@@ -67,14 +67,11 @@
                             Notre équipe s'appelle "Bro4Life". Nous sommes deux amis d'enfance ; malgré la distance qui nous sépare, nous nous considérons comme frères - d'où le "bro", raccourci de "brother".<br>
                             Nous avons déjà partagé jeux et fêtes. A travers ce projet, nous voulons découvrir quelque chose de plus sérieux. Vivre une aventure humaine hors du commun. Affronter ensembles les difficultés. Un test grandeur nature pour nous prouver que nous sommes capables de construire un projet professionnel ensemble.
                         </p>
-                        <p class="middle">
-                            TIMELINE - progression (date de début, date de fin, avec étapes - achat de la caisse, etc...)
-                        </p>
                     </content>
                 </div>
             </article>
             
-            <diapo id="galerie">
+            <diapo>
                 <!-- imgs -->
             </diapo>
             
@@ -92,7 +89,7 @@
                             </p>
                         </cols>
                         <sponsors>
-                                <img src="img/brands/google.png"/>
+                            <!-- imgs -->
                         </sponsors>
                         <cols>
                             <p class="middle">
@@ -118,7 +115,6 @@
                 </div>
             </article>
 
-                
             <article id="contact">
                 <div>
                     <content>
@@ -154,11 +150,7 @@
 
 <script>
 
-ajax("galerie.php", display_images, null);
-
-var diapo = document.querySelector("diapo");
-
-function display_images(json, args) {
+function display_images(json, [dom, vuer]) {
     var images = JSON.parse(json);
 
     for (var image_index in images.records) {
@@ -166,10 +158,20 @@ function display_images(json, args) {
 
         var image_dom = document.createElement("img");
         image_dom.src = image_url;
-        diapo.appendChild(image_dom);
+        dom.appendChild(image_dom);
     }
 
-    new Vuer(diapo, "width");
+    if (vuer) new Vuer(dom, "width");
 }
+
+/* Galery */
+
+var galery = document.querySelector("diapo");
+ajax("php/galerie.php", display_images, [galery, true]);
+
+/* Sponsors */
+
+var sponsors = document.querySelector("sponsors");
+ajax("php/sponsors.php", display_images, [sponsors, false]);
 
 </script>
