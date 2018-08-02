@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bro4Life</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/galerie.css">
+</head>
+<body onscroll="check_scroll_position()">
+    
+    <header>
+        <div>
+            <logo>
+                <img id="logo_img" src="img/logo/logo_textuel_fonce.png" />
+            </logo>
+            <nav>
+                <a href="index.html#presentation">Le 4L Trophy</a>
+                <a href="index.html#participation">Notre participation</a>
+                <a href="#">Galerie photos</a>
+                <a href="index.html#sponsors">Ils nous soutiennent</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        
+        <diapo>
+            <a href="#">Test element déjà <span>présent</span></a>
+        </diapo>
+
+    </section>
+    
+</body>
+</html>
+
+<script src="js/header.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/Vuer.js"></script>
+
+<script>
+
+set_dark_header();
+header.className = header.className + " scrolling";
+
+ajax("php/galerie.php", display_images, null);
+
+var diapo = document.querySelector("section diapo");
+
+function display_images(json, args) {
+    var images = JSON.parse(json);
+
+    for (var image_index in images.records) {
+        var image_url = images.records[image_index];
+
+        var image_dom = document.createElement("img");
+        image_dom.src = image_url;
+        diapo.appendChild(image_dom);
+    }
+
+    new Vuer(diapo, "height");
+}
+
+</script>

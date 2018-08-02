@@ -1,0 +1,428 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    transition: all .2s ease;
+}
+
+@font-face {
+    font-family: "Abel";
+	src: url("../fonts/Abel-Regular.ttf");
+}
+
+@font-face {
+    font-family: "AppoPaint";
+	src: url("../fonts/AppoPaint-Regular.otf");
+}
+
+@font-face {
+    font-family: "Brushaff";
+	src: url("../fonts/Brushaff.otf");
+}
+
+/* Body */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header / Footer */
+
+header, footer {
+    padding: 25px 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    z-index: 1000;
+}
+
+header.scrolling {
+    background: rgb(37, 37, 37); /* <=> board background */
+    padding: 5px 0;
+    box-shadow: 0 0 4px 0 black;
+}
+
+header div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+
+header div > * {
+    display: flex;
+    flex-direction: row;
+}
+
+header a, header img {
+    height: 70px; /* <=> line-height */
+    line-height: 70px; /* <=> height */
+    font-family: "Abel";
+}
+
+header a {
+    color: rgb(37, 37, 37);
+    text-decoration: none;
+    padding: 0 20px;
+    text-transform: uppercase;
+}
+
+header.dark a {
+    color: white;
+}
+
+header a:hover {
+    color: rgb(197, 128, 0);
+}
+
+header.dark a:hover {
+    color: orange;
+}
+
+footer {
+    padding: 40px 0;
+    background: rgb(37, 37, 37);
+}
+
+footer div {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Board */
+
+board {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70vh;
+}
+
+board wall {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+board wall > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Section */
+
+section {
+    background: white;
+    box-shadow: 0 0 5px black;
+}
+
+section div {
+    display: flex;
+    flex-direction: column;
+}
+
+section article {
+    flex: 1;
+}
+
+section article div {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    /* padding: 120px 0; */
+    /* width: 1100px; */
+    padding: 120px 21%;
+}
+
+section article div > * {
+    flex: 1;
+    display: flex;
+    /* margin-right: 15%; */
+}
+
+/* section article div > *:last-child {
+    margin-right: 0;
+} */
+
+section article div > content {
+    display: flex;
+    flex-direction: column;
+}
+
+section content > * {
+    flex: 1;
+}
+
+/* Articles */
+
+section article#presentation {
+    padding-top: 600px;
+    background: url("../img/voiture2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position-y: -250px; */
+}
+
+section article#presentation div {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+section article#participation {
+    /* background: rgb(23, 38, 61); */
+    /* background: rgb(92, 47, 21); */
+    background: url("../img/dunes4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position-y: -200px; */
+}
+
+section article#participation * {
+    color: white;
+}
+
+section article#sponsors {
+    background: rgb(37, 37, 37);
+}
+
+section article#sponsors h2, section article#sponsors p {
+    color: white;
+}
+
+section article#contact cols {
+    align-items: flex-start;
+}
+
+/* Section sub-elements */
+
+section cols {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+section cols > * {
+    flex: 1;
+}
+
+section h2 {
+    margin-bottom: 30px;
+    text-align: left;
+    font-size: 38px;
+    text-transform: uppercase;
+    font-family: "AppoPaint";
+    color: rgb(40, 40, 40);
+}
+
+section h2.center {
+    text-align: center;
+}
+
+section h3 {
+    font-size: 28px;
+    font-family: "Brushaff";
+    color: rgb(50, 50, 50);
+}
+
+section p {
+    line-height: 180%;
+    text-align: justify;
+    color: rgb(75, 75, 75);
+}
+
+section p impo {
+    display: inline;
+    font-size: inherit;
+    color: orange;
+}
+
+section p.big {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    font-family: "Abel";
+    font-size: 28px;
+    text-align: center;
+}
+
+section p.middle {
+    margin-top: 75px;
+    font-family: "Abel";
+    font-size: 26px;
+    text-align: center;
+}
+
+section img {
+    width: 50%;
+}
+
+section img.logo {
+    flex: 0;
+    height: 100%;
+}
+
+section svg {
+    margin-bottom: 30px;
+    height: 50px;
+    opacity: 0.3;
+}
+
+section a.more {
+    align-self: flex-end;
+    margin-top: 30px;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: "Abel";
+    color: white;
+    background: rgb(50, 50, 50);
+    box-shadow: 0 0 0 orange inset;
+}
+
+section a.more:hover {
+    box-shadow: 0 0 30px 30px orange inset;
+}
+
+section a.normal {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+section a.normal:hover {
+    text-decoration: underline;
+}
+
+/* Members */
+
+members {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+member {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+member * {
+    margin: 20px auto 10px auto;
+    text-align: center;
+}
+
+member img {
+    width: 150px;
+    height: 150px;
+    background-clip: border-box;
+    background-position: center;
+    border: 10px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+member img:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 60px 0 100px rgba(0, 0, 0, 0.05);
+}
+
+member:first-child img:hover {
+    transform: scale(1.1) rotateZ(2deg);
+}
+
+member:last-child img:hover {
+    transform: scale(1.1) rotateZ(-2deg);
+}
+
+/* member img {
+    padding: 4px;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background: transparent url("../img/border.png") no-repeat;
+    background-size: 130%;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.7) inset;
+} */
+
+/* Stats */
+
+stat {
+    display: flex;
+    flex-direction: column;
+    margin: 75px 0;
+}
+
+stat > * {
+    flex: 1;
+    text-align: center;
+    font-family: Verdana;
+}
+
+stat tt {
+    font-size: 118px;
+    color: orange;
+    text-shadow: 0 0 1px black;
+}
+
+stat tt span, stat unit {
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+stat unit {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+
+/* Logos */
+
+logos {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+logos img {
+    flex: 1;
+}
+
+logos img + img {
+    margin-top: 50px
+}
+
+/* Bandeaux */
+
+sponsors, medias {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px 0;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.13), transparent);
+    overflow: hidden;
+}
+
+sponsors img, medias img {
+    height: 70px;
+    width: auto;
+    opacity: 0.5;
+}
+
+sponsors img:hover, medias img:hover {
+    opacity: 0.8;
+}
+
+sponsors img + img, medias img + img {
+    margin-left: 50px;
+}

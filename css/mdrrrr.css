@@ -1,0 +1,133 @@
+
+* {
+    font-size: 14px;
+    font-family: Comic sans ms;
+    cursor: url("../img/4l.png") 4 12, auto;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    border: 1px solid black;
+}
+
+/* Header */
+
+header {
+    flex: 0.3;
+    background: darkred;
+}
+
+header div {
+    display: flex;
+    flex-direction: column;
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+}
+
+header img {
+    width: 100%;
+    margin: 5px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+header:hover img {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+header a {
+    padding: 5px 0;
+    color: silver;
+    transition: all .2s linear;
+}
+
+header a::before {
+    content: "- ";
+}
+
+header a:hover {
+    color: black;
+    padding-left: 10px;
+    background: silver;
+}
+
+/* Board */
+
+board {
+    display: none;
+}
+
+/* Section */
+
+section {
+    flex: 1;
+    padding: 10px 7%;
+}
+
+section div {
+    display: flex;
+    flex-direction: column;
+}
+
+section article {
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 1px solid silver;
+}
+
+section h2 {
+    color: orange;
+}
+
+section img {
+    width: 50px;
+}
+
+/* Members */
+
+members {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+member {
+    flex: 0.3;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    border: 1px solid silver;
+    border-radius: 20px;
+    transition: all .5s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+member:hover {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+member * {
+    margin: 0 auto 20px auto;
+    text-align: center;
+    margin: auto;
+}
+
+member img {
+    margin-bottom: 20px;
+    transition: all .5s ease;
+}
+
+member:hover img {
+    transform: scale(1.6);
+}
+
+/* Footer */
+
+footer {
+    flex: 0.1;
+    background: rgba(0, 0, 0, 0.3);
+}
