@@ -40,7 +40,7 @@
                             De plus, chaque équipage est encouragé par les organisateurs à faire des dons financiers. Ils servent à la construction de salles de classe pour les enfants du désert.<br>
                             Grâce au 4L Trophy c'est déjà plus de <impo>15 écoles</impo> qui ont été construites !<br>
                             <br>
-                            Cette saison, le voyage commence le <impo>21 Février 2019</impo> pour se terminer le <impo>03 Mars 2019</impo>.
+                            Cette saison, le voyage est d'une durée de <impo>42 jours</impo> et commence le <impo>20 fevrier 2019</impo>.
                         </p>
                         <a class="more" target="_blank" href="https://www.4ltrophy.com/">+ d'infos</a>
                     </content>
@@ -68,13 +68,15 @@
                             Nous avons déjà partagé jeux et fêtes. A travers ce projet, nous voulons découvrir quelque chose de plus sérieux. Vivre une aventure humaine hors du commun. Affronter ensembles les difficultés. Un test grandeur nature pour nous prouver que nous sommes capables de construire un projet professionnel ensemble.
                         </p>
                         <p class="middle">
-                            TIMELINE - progression (date de début, date de fin, avec étapes - achat de la caisse, etc...)
+                            <timeline>
+                                <event date="">Achat de la voiture</event>
+                            </timeline>
                         </p>
                     </content>
                 </div>
             </article>
             
-            <diapo id="galerie">
+            <diapo>
                 <!-- imgs -->
             </diapo>
             
@@ -92,11 +94,11 @@
                             </p>
                         </cols>
                         <sponsors>
-                                <img src="img/brands/google.png"/>
+                            <!-- imgs -->
                         </sponsors>
                         <cols>
                             <p class="middle">
-                                Les partenariats nous permettent de financer notre véhicule, nos équipements et nos victuailles pour les <impo>10 jours</impo> de voyage, en échange de visibilité !
+                                Les partenariats nous permettent de financer notre véhicule, nos équipements et nos victuailles pour les <impo>2 semaines</impo> de voyage, en échange de visibilité !
                             </p>
                             <stat>
                                 <unit>Projet financé à</unit>
@@ -154,11 +156,7 @@
 
 <script>
 
-ajax("galerie.php", display_images, null);
-
-var diapo = document.querySelector("diapo");
-
-function display_images(json, args) {
+function display_images(json, [dom, vuer]) {
     var images = JSON.parse(json);
 
     for (var image_index in images.records) {
@@ -166,10 +164,20 @@ function display_images(json, args) {
 
         var image_dom = document.createElement("img");
         image_dom.src = image_url;
-        diapo.appendChild(image_dom);
+        dom.appendChild(image_dom);
     }
 
-    new Vuer(diapo, "width");
+    if (vuer) new Vuer(dom, "width");
 }
+
+/* Galery */
+
+var galery = document.querySelector("diapo");
+ajax("php/galerie.php", display_images, [galery, true]);
+
+/* Sponsors */
+
+var sponsors = document.querySelector("sponsors");
+ajax("php/sponsors.php", display_images, [sponsors, false]);
 
 </script>
