@@ -407,6 +407,6 @@ sponsors img:hover, medias img:hover {
     opacity: 0.8;
 }
 
-sponsors img + img, medias img + img {
+sponsors a + a, medias img + img {
     margin-left: 50px;
 }
