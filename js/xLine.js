@@ -1,75 +1,67 @@
 
 class xLine {
-    constructor() {
 
+    constructor(dom, color) {
+        this.timeline = dom;
+        this.color = color;
+
+        this.events = this.timeline.children;
+
+        this.format_timeline();
+        this.format_events();
     }
+
+    format_timeline() {
+        this.timeline.style.display = "flex";
+        this.timeline.style.flexDirection = "row";
+        this.timeline.style.height = "auto";
+        this.timeline.style.width = "100%";
+        this.timeline.style.borderBottom = "5px solid " + this.color;
+    }
+
+    format_events() {
+        for (var event of this.events) {
+            event.style.flex = "1";
+            event.style.display = "flex";
+            event.style.flexDirection = "column";
+            event.style.justifyContent = "flex-end";
+
+            /* Event date */
+            
+            var date = event.getAttribute("date");
+            var date_array = date.split("/");
+            date = new Date(date_array[1] + "/" + date_array[0] + "/" + date_array[2]);
+
+            /* Event description */
+
+            var description = document.createElement("descr");
+                description.style.textAlign = "center";
+                description.innerHTML = event.innerHTML;
+                event.innerHTML = "";
+
+            event.appendChild(description);
+
+            /* Event puce */
+
+            var puce = document.createElement("puce");
+                puce.style.margin = "12.5px auto -12.5px auto"; /* - (width + timeline border width) / 2 */
+                puce.style.width = "20px";
+                puce.style.height = "20px";
+                puce.style.background = this.color;
+                puce.style.borderRadius = "50%";
+
+            event.appendChild(puce);
+        }
+    }
+
 }
 
 
 
+// #timeline event + event {
+//   margin-left: 10px;
+// }
 
-<div id="timeline">
-
-<event>
-  <descr>
-  </descr>
-  <puce></puce>
-</event>
-
-<event>
-  <descr>
-    Premier event regerg ergreg er reg reg erg  rg reg reg re g
-  </descr>
-  <puce></puce>
-</event>
-
-<event>
-  <descr>
-    2eme event geejezfzef zefz gzg
-  </descr>
-  <puce></puce>
-</event>
-
-<event>
-  <descr>
-  </descr>
-  <puce></puce>
-</event>
-
-</div>
-
-
-#timeline {
-  display: flex;
-  flex-direction: row;
-  height: auto;
-  width: 100%;
-  border-bottom: 5px solid orange;
-}
-
-#timeline event {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-#timeline event + event {
-  margin-left: 10px;
-}
-
-#timeline descr {
- text-align: center;
-}
-
-#timeline puce {
-  margin: 12.5px auto -12.5px auto; /* - (width + timeline border width) / 2 */
-  width: 20px;
-  height: 20px;
-  background: orange;
-  border-radius: 50%;
-}
-
-#timeline event:first-child, #timeline event:last-child {
-  flex: 0;
-}
+// #timeline event:first-child, #timeline event:last-child {
+//   flex: 0;
+// }
