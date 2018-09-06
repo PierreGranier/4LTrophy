@@ -45,7 +45,7 @@ header {
 
 header.scrolling {
     background: rgb(37, 37, 37); /* <=> board background */
-    padding: 5px 0;
+    padding: 0;
     box-shadow: 0 0 4px 0 black;
 }
 
@@ -62,16 +62,29 @@ header div > * {
 }
 
 header a, header img {
-    height: 70px; /* <=> line-height */
-    line-height: 70px; /* <=> height */
+    margin-top: 20px;
+    height: 50px; /* <=> line-height */
+    line-height: 50px; /* <=> height */
     font-family: "Abel";
 }
 
 header a {
     color: rgb(37, 37, 37);
     text-decoration: none;
-    padding: 0 20px;
+    padding: 0 30px;
     text-transform: uppercase;
+}
+
+header a.important {
+    color: white;
+    background: rgb(160, 40, 40);
+}
+
+header.dark a, header.dark img {
+    margin-top: 0;
+    height: 80px; /* <=> line-height */
+    line-height: 80px; /* <=> height */
+    font-family: "Abel";
 }
 
 header.dark a {
