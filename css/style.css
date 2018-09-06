@@ -59,13 +59,18 @@ header div {
 header div > * {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
-header a, header img {
-    margin-top: 20px;
-    height: 50px; /* <=> line-height */
-    line-height: 50px; /* <=> height */
+header a {
+    height: 60px; /* <=> line-height */
+    line-height: 60px; /* <=> height */
     font-family: "Abel";
+}
+
+header img {
+    height: 80px; /* <=> line-height */
+    line-height: 80px; /* <=> height */
 }
 
 header a {
@@ -75,16 +80,9 @@ header a {
     text-transform: uppercase;
 }
 
-header a.important {
-    color: white;
-    background: rgb(160, 40, 40);
-}
-
 header.dark a, header.dark img {
-    margin-top: 0;
     height: 80px; /* <=> line-height */
     line-height: 80px; /* <=> height */
-    font-family: "Abel";
 }
 
 header.dark a {
@@ -108,6 +106,17 @@ footer div {
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     text-align: center;
+}
+
+header a.important {
+    color: white;
+    background: rgb(160, 40, 40);
+    text-shadow: 0 0 0 rgb(58, 2, 2);
+}
+
+header a.important:hover {
+    color: white;
+    text-shadow: 7px 7px 2px rgb(58, 2, 2);
 }
 
 /* Board */
