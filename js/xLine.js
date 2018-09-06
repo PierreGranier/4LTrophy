@@ -1,9 +1,10 @@
 
 class xLine {
 
-    constructor(dom, color) {
+    constructor(dom, color, color_2) {
         this.timeline = dom;
         this.color = color;
+        this.color_2 = color_2;
 
         this.events = this.timeline.children;
 
@@ -51,6 +52,12 @@ class xLine {
                 puce.style.borderRadius = "50%";
 
             event.appendChild(puce);
+
+            
+            if (new Date() > date) {
+                puce.style.background = this.color_2;
+                event.style.boxShadow = "0 5px 0 0 " + this.color_2;
+            }
         }
     }
 
