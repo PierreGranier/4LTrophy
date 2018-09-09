@@ -8,6 +8,7 @@ class xLine {
         this.color = color;
         this.puces_colors = [ "rgb(155, 29, 11)", "rgb(63, 103, 36)", "rgb(207, 70, 71)", "rgb(61, 103, 180)", "rgb(72, 83, 102)", "rgb(172, 23, 102)", "rgb(221, 183, 52)", "rgb(209, 37, 36)"];
 
+        this.months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
         this.precision = precision; // month, day
 
         this.format_timelines();
@@ -49,6 +50,7 @@ class xLine {
 
         for (var i = 0; i < events.length; ++i) {
             var event = events[i];
+            var event_color = this.puces_colors[valid_event_id % this.puces_colors.length];
 
             /* Style the event */
 
@@ -56,21 +58,31 @@ class xLine {
             event.style.display = "flex";
             event.style.flexDirection = "column";
             event.style.justifyContent = "space-between";
-            event.style.margin = "20px";
+            // event.style.margin = "20px";
             event.style.padding = "0 20px";
-            event.style.background = "rgba(0, 0, 0, 0.1)";
+            // event.style.background = "rgba(0, 0, 0, 0.1)";
 
             /* Event date */
             
-            var date = event.getAttribute("date");
-            if (date) {
-                var date_array = date.split("/");
-                date = new Date(date_array[1] + "/" + date_array[0] + "/" + date_array[2]);
+            var attr_date = event.getAttribute("date");
+            var date_obj = null;
+            var date = document.createElement("date");
+            if (attr_date) {
+                var date_array = attr_date.split("/");
+                date_obj = new Date(date_array[1] + "/" + date_array[0] + "/" + date_array[2]);
+
+                date.style.color = event_color;
+                date.style.fontWeight = "bold";
+                date.innerHTML = this.months[date_obj.getMonth()].toUpperCase();
+                if (this.precision === "day") {
+                    date.innerHTML = date.innerHTML;
+                }
             }
 
             /* Event description */
 
             var description = document.createElement("descr");
+                description.style.padding = "15px 0";
                 description.style.padding = "15px 0";
                 description.style.lineHeight = "130%";
                 description.style.fontSize = "85%";
@@ -83,24 +95,44 @@ class xLine {
             /* Event puce */
 
             var puce = document.createElement("puce");
-                puce.style.width = "20px";
-                puce.style.height = "20px";
-                puce.style.background = this.puces_colors[valid_event_id % this.puces_colors.length];
-                puce.style.borderRadius = "50%";
+                puce.style.display = "flex";
+                puce.style.flexDirection = "column";
+
+            /* Event puce circle */
+
+            var circle = document.createElement("circle");
+                circle.style.width = "20px";
+                circle.style.height = "20px";
+                circle.style.background = event_color;
+                circle.style.borderRadius = "50%";
+
+            /* Event puce line */
+
+            var line = document.createElement("line");
+                line.style.width = "2px";
+                line.style.height = "40px";
+                line.style.margin = "0 auto";
+                line.style.background = event_color;
 
             /* Append description and puce */
 
             if (description.innerHTML !== "") {
                 if (i < events.length / 2) {
+                    event.appendChild(date);
                     event.appendChild(description);
+                    puce.appendChild(line);
+                    puce.appendChild(circle);
                     event.appendChild(puce);
-                    event.style.borderTop = "3px solid " + this.puces_colors[valid_event_id % this.puces_colors.length];
-                    puce.style.margin = "0 auto -31px auto"; /* - (width + timeline border width) / 2 + event margin */
+                    // event.style.borderTop = "3px solid " + event_color;
+                    circle.style.margin = "0 auto -11px auto"; /* - (width + timeline border width) / 2 + event margin */
                 } else {
+                    puce.appendChild(circle);
+                    puce.appendChild(line);
                     event.appendChild(puce);
                     event.appendChild(description);
-                    event.style.borderBottom = "3px solid " + this.puces_colors[valid_event_id % this.puces_colors.length];
-                    puce.style.margin = "-31px auto 0 auto"; /* - (width + timeline border width) / 2 + event margin */
+                    event.appendChild(date);
+                    // event.style.borderBottom = "3px solid " + event_color;
+                    circle.style.margin = "-11px auto 0 auto"; /* - (width + timeline border width) / 2 + event margin */
                 }
 
                 valid_event_id++;
@@ -108,8 +140,13 @@ class xLine {
 
             /* Color the event if the date is past */
 
-            if (new Date() > date) {
-            }
+            // if (new Date() > date_obj && description.innerHTML !== "") {
+            //     if (i < events.length / 2) {
+            //         event.style.boxShadow = "0 2px 0 red";
+            //     } else {
+            //         event.style.boxShadow = "0 -2px 0 red";
+            //     }
+            // }
         }
 
         this.second_timeline.children[0].style.flex = "0.5";
