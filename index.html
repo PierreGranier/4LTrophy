@@ -71,10 +71,12 @@
                         </p>
                         <p class="middle">
                             <timeline>
-                                <event date="15/06/2018">Achat de la voiture</event>
-                                <event date="02/08/2018">Truc</event>
-                                <event date="31/12/2018">Clôture des dossiers</event>
-                                <event date="02/01/2019">Départ du 4LTrophy</event>
+                                <event date="01/04/2018">Pré-inscription<br>Achat de la 4L</event>
+                                <event date="01/05/2018">Constitution du dossier partenariat<br>Préparation mécanique de la 4L</event>
+                                <event date="01/06/2018">Début de la recherche de partenaires<br>Organisation d'événements</event>
+                                <event date="01/12/2018">Événement autour de Noël<br>Inscription définitive</event>
+                                <event date="01/01/2019">Événement de présentation du 4L Trophy<br>Finalisation des préparatifs</event>
+                                <event date="20/02/2019">Rendez-vous au village départ<br>Début de l’aventure !</event>
                             </timeline>
                         </p>
                     </content>
@@ -91,7 +93,7 @@
                         <h2 class="center">Ils nous soutiennent</h2>
                         <cols>
                             <stat>
-                                <tt>3</tt>
+                                <tt>4</tt>
                                 <unit>sponsors réunis</unit>
                             </stat>
                             <p class="middle">
@@ -170,6 +172,7 @@
 <script src="js/header.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/Vuer.js"></script>
+<script src="js/xLine.js"></script>
 
 <script>
 
@@ -200,6 +203,6 @@ var sponsors = document.querySelector("sponsors");
 /* Timeline */
 
 var timeline = document.querySelector("timeline");
-new xLine(timeline, "rgb(250, 250, 250)", "orange");
+new xLine(timeline, "rgba(255, 255, 255, 0.3)", "month");
 
 </script>
