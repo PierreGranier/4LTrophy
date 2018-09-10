@@ -62,6 +62,8 @@ class xLine {
             // event.style.margin = "20px";
             event.style.padding = "0 20px";
             // event.style.background = "rgba(0, 0, 0, 0.1)";
+            event.style.borderRadius = "50%";
+            event.style.cursor = "pointer";
 
             /* Event date */
             
@@ -115,7 +117,7 @@ class xLine {
                 line.style.margin = "0 auto";
                 line.style.background = event_color;
 
-            /* Append description and puce */
+            /* Append description, puce and effect on hover */
 
             if (description.innerHTML !== "") {
                 if (i < events.length / 2) {
@@ -137,6 +139,9 @@ class xLine {
                 }
 
                 valid_event_id++;
+
+                description.addEventListener("mouseover", function(event) { xline_event_over(event, true); });
+                description.addEventListener("mouseout", function(event) { xline_event_over(event, false); });
             }
 
             /* Color the event if the date is past */
@@ -154,4 +159,16 @@ class xLine {
         this.second_timeline.firstChild.style.flex = "0.5";
     }
 
+}
+
+function xline_event_over(event, state) {
+    var target = event.target;
+
+    while (target.nodeName !== "EVENT") target = target.parentNode;
+    
+    if (state === true) {
+        target.style.boxShadow = "0 0 0 200px rgba(0, 0, 0, 0.05) inset, 0 0 0 10px rgba(0, 0, 0, 0.05)";
+    } else {
+        target.style.boxShadow = "none";
+    }
 }
