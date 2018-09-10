@@ -33,6 +33,7 @@ class xLine {
             this.first_timeline.removeChild(event);
             this.second_timeline.appendChild(event);
         }
+        this.first_timeline.appendChild(document.createElement("event"));
 
         this.first_timeline.parentNode.appendChild(this.second_timeline);
 
@@ -149,7 +150,8 @@ class xLine {
             // }
         }
 
-        this.second_timeline.children[0].style.flex = "0.5";
+        this.first_timeline.lastChild.style.flex = "0.5";
+        this.second_timeline.firstChild.style.flex = "0.5";
     }
 
 }
