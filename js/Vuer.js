@@ -4,10 +4,8 @@
 
 class Vuer {
 
-    constructor(dom, maximize) {
+    constructor(dom) {
         this.parent = dom;
-
-        this.maximize = maximize; // width || height
 
         this.slides = this.parent.children;
 
@@ -47,10 +45,15 @@ class Vuer {
 
             window.appendChild(slide);
 
-            if (this.maximize === "height") {
+            var maximize = "height";
+            if (slide.width > slide.height) {
+                maximize = "width";
+            }
+
+            if (maximize === "height") {
                 slide.style.width = "auto";
                 slide.style.height = "100vh";
-            } else if (this.maximize === "width") {
+            } else if (maximize === "width") {
                 slide.style.width = "100%";
             }
             
