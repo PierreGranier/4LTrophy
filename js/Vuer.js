@@ -45,17 +45,19 @@ class Vuer {
 
             window.appendChild(slide);
 
-            var maximize = "height";
-            if (slide.width > slide.height) {
-                maximize = "width";
-            }
-
-            if (maximize === "height") {
-                slide.style.width = "auto";
-                slide.style.height = "100vh";
-            } else if (maximize === "width") {
-                slide.style.width = "100%";
-            }
+            setTimeout(function() {
+                var maximize = "height";
+                if (slide.width > slide.height) {
+                    maximize = "width";
+                }
+    
+                if (maximize === "height") {
+                    slide.style.width = "auto";
+                    slide.style.height = "100vh";
+                } else if (maximize === "width") {
+                    slide.style.width = "100%";
+                }
+            }, 500);
             
             this.windows.push(window);
         }
