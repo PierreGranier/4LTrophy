@@ -1,0 +1,15 @@
+Tuto token :
+
+https://bertiaux.fr/archives/petit-guide-bien-gerer-access-token-instagram-recuperation-de-flux-de-photos
+
+Token :
+
+access_token=8577676532.8e57768.8db226475a104da596462d989843d081
+
+Doc :
+
+https://www.instagram.com/developer/endpoints/users/
+
+Lien :
+
+https://api.instagram.com/v1/users/self/media/recent/?access_token=8577676532.8e57768.8db226475a104da596462d989843d081

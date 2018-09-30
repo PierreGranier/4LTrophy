@@ -140,8 +140,8 @@ class xLine {
 
                 valid_event_id++;
 
-                description.addEventListener("mouseover", function(event) { xline_event_over(event, true); });
-                description.addEventListener("mouseout", function(event) { xline_event_over(event, false); });
+                description.addEventListener("mouseover", function(event) { xLine.xline_event_over(event, true); });
+                description.addEventListener("mouseout", function(event) { xLine.xline_event_over(event, false); });
             }
 
             /* Color the event if the date is past */
@@ -159,16 +159,16 @@ class xLine {
         this.second_timeline.firstChild.style.flex = "0.5";
     }
 
-}
+    static xline_event_over(event, state) {
+        var target = event.target;
 
-function xline_event_over(event, state) {
-    var target = event.target;
-
-    while (target.nodeName !== "EVENT") target = target.parentNode;
-    
-    if (state === true) {
-        target.style.boxShadow = "0 0 0 200px rgba(0, 0, 0, 0.05) inset, 0 0 0 10px rgba(0, 0, 0, 0.05)";
-    } else {
-        target.style.boxShadow = "none";
+        while (target.nodeName !== "EVENT") target = target.parentNode;
+        
+        if (state === true) {
+            target.style.boxShadow = "0 0 0 200px rgba(0, 0, 0, 0.05) inset, 0 0 0 10px rgba(0, 0, 0, 0.05)";
+        } else {
+            target.style.boxShadow = "none";
+        }
     }
+
 }

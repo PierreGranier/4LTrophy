@@ -21,6 +21,8 @@ class Vuer {
         this.content = document.createElement("content");
         this.parent.appendChild(this.content);
         this.format_content();
+
+        Vuer.update_position(this.content, 0);
     }
 
     format_parent() {
@@ -30,7 +32,41 @@ class Vuer {
     format_slides() {
         while (this.slides.length > 0) {
             var slide = this.slides[0];
-            slide.style.userSelect = "none";
+
+            // Transform simple img tag into figure + figcaption structure
+
+            if (slide.nodeName === "IMG") {
+                var img = slide;
+
+                var figure = document.createElement("figure");
+                figure.appendChild(img);
+
+                var figcaption = document.createElement("figcaption");
+                figcaption.innerHTML = "aaaaaaarth tgrg rg reg ergregreg er ger rtaah rtaaaaar htaaaaaz dazd azaa zdah rth raaaaaaaaf gah yaaaaaa";
+                figure.appendChild(figcaption);
+
+                slide = figure;
+            }
+
+            var img = slide.querySelector("img");
+                img.style.userSelect = "none";
+
+            var figcaption = slide.querySelector("figcaption");
+                var figcaption_padding_margin = "30";
+                figcaption.style.display = "none";
+                figcaption.style.position = "absolute";
+                figcaption.style.left = "50%";
+                figcaption.style.bottom = figcaption_padding_margin * 2 + "px";
+                figcaption.style.padding = "20px " + figcaption_padding_margin + "px";
+                figcaption.style.lineHeight = "28px";
+                figcaption.style.fontSize = "15px";
+                figcaption.style.textAlign = "left";
+                figcaption.style.fontFamily = "Tahoma";
+                figcaption.style.background = "rgba(255, 255, 255, 0.75)";
+                figcaption.style.opacity = "1";
+                figcaption.style.transform = "translate(-50%)";
+
+            // Put the figcaption into a window
 
             var window = document.createElement("window");
                 window.style.flex = "1";
@@ -47,17 +83,19 @@ class Vuer {
 
             setTimeout(function() {
                 var maximize = "height";
-                if (slide.width > slide.height) {
+                if (img.width > img.height) {
                     maximize = "width";
                 }
     
                 if (maximize === "height") {
-                    slide.style.width = "auto";
-                    slide.style.height = "100vh";
+                    img.style.width = "auto";
+                    img.style.height = "100vh";
                 } else if (maximize === "width") {
-                    slide.style.width = "100%";
+                    img.style.width = "100%";
                 }
-            }, 500);
+
+                figcaption.style.width = img.width - figcaption_padding_margin * 10 + "px";
+            }, 300);
             
             this.windows.push(window);
         }
@@ -109,7 +147,7 @@ class Vuer {
         this.summary.style.display = "flex";
         this.summary.style.flexDirection = "column";
         this.summary.style.justifyContent = "flex-end";
-        this.summary.style.paddingBottom = "5vh";
+        this.summary.style.paddingBottom = "2vh";
         this.summary.style.color = "white";
         this.summary.style.zIndex = "500";
 
@@ -203,7 +241,7 @@ class Vuer {
 
             content.querySelector("window").style.marginLeft = content.position * 100 + "%";
 
-            /* Change the control */
+            /* Change the summary control items */
 
             var items = content.parentNode.querySelector("controls summary items").childNodes;
             for (var item of items) {
@@ -211,10 +249,18 @@ class Vuer {
             }
             items[Math.abs(new_pos)].style.background = "white";
 
-            /* Position the window */
+            /* Position the client window */
 
             var parent = content.parentNode; while (parent.id === "") parent = parent.parentNode;
             window.location = "#"+  parent.id;
+
+            /* Change the figcaption */
+
+            var figcaptions = content.querySelectorAll("figure figcaption");
+            for (var figcaption of figcaptions) {
+                figcaption.style.display = "none";
+            }
+            content.childNodes[-content.position].querySelector("figcaption").style.display = "block";
 
             /* Timeout during the animation */
 
