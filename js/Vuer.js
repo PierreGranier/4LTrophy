@@ -33,7 +33,7 @@ class Vuer {
         while (this.slides.length > 0) {
             var slide = this.slides[0];
 
-            // Transform simple img tag into figure + figcaption structure
+            // Transform simple img tag into figure structure
 
             if (slide.nodeName === "IMG") {
                 var img = slide;
@@ -42,7 +42,7 @@ class Vuer {
                 figure.appendChild(img);
 
                 var figcaption = document.createElement("figcaption");
-                figcaption.innerHTML = "aaaaaaarth tgrg rg reg ergregreg er ger rtaah rtaaaaar htaaaaaz dazd azaa zdah rth raaaaaaaaf gah yaaaaaa";
+                figcaption.innerHTML = "";
                 figure.appendChild(figcaption);
 
                 slide = figure;
@@ -57,22 +57,26 @@ class Vuer {
                 figcaption.style.position = "absolute";
                 figcaption.style.left = "50%";
                 figcaption.style.bottom = figcaption_padding_margin * 2 + "px";
+                figcaption.style.width = "400px";
                 figcaption.style.padding = "20px " + figcaption_padding_margin + "px";
                 figcaption.style.lineHeight = "28px";
                 figcaption.style.fontSize = "15px";
                 figcaption.style.textAlign = "left";
                 figcaption.style.fontFamily = "Tahoma";
                 figcaption.style.background = "rgba(255, 255, 255, 0.75)";
-                figcaption.style.opacity = "1";
+                figcaption.style.opacity = "0";
                 figcaption.style.transform = "translate(-50%)";
+                figcaption.style.transition = "all .3s ease";
+            
+            slide.style.flex = "1";
+            slide.style.display = "flex";
+            slide.style.justifyContent = "center";
+            slide.style.alignItems = "center";
+            slide.style.userSelect = "none";
 
-            // Put the figcaption into a window
+            // Put the slide into a window
 
             var window = document.createElement("window");
-                window.style.flex = "1";
-                window.style.display = "flex";
-                window.style.justifyContent = "center";
-                window.style.alignItems = "center";
                 window.style.minWidth = "100%";
                 window.style.maxWidth = "100%";
                 window.style.background = "black";
@@ -94,7 +98,6 @@ class Vuer {
                     img.style.width = "100%";
                 }
 
-                figcaption.style.width = img.width - figcaption_padding_margin * 10 + "px";
             }, 300);
             
             this.windows.push(window);
@@ -258,9 +261,16 @@ class Vuer {
 
             var figcaptions = content.querySelectorAll("figure figcaption");
             for (var figcaption of figcaptions) {
+                figcaption.style.opacity = "0";
                 figcaption.style.display = "none";
             }
-            content.childNodes[-content.position].querySelector("figcaption").style.display = "block";
+            var figcaption = content.childNodes[-content.position].querySelector("figcaption");
+            if (figcaption.innerHTML !== "") {
+                figcaption.style.display = "block";
+                setTimeout(function() {
+                    figcaption.style.opacity = "1";
+                }, 300);
+            }
 
             /* Timeout during the animation */
 
