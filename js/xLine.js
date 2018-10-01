@@ -140,8 +140,8 @@ class xLine {
 
                 valid_event_id++;
 
-                description.addEventListener("mouseover", function(event) { xLine.xline_event_over(event, true); });
-                description.addEventListener("mouseout", function(event) { xLine.xline_event_over(event, false); });
+                event.addEventListener("mouseover", function(event) { xLine.xline_event_over(event, true); });
+                event.addEventListener("mouseout", function(event) { xLine.xline_event_over(event, false); });
             }
 
             /* Color the event if the date is past */
