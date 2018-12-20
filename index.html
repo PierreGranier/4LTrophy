@@ -93,7 +93,7 @@
                         <h2 class="center">Ils nous soutiennent</h2>
                         <cols>
                             <stat>
-                                <tt>7</tt>
+                                <tt id="count_sponsors">1000</tt>
                                 <unit>sponsors réunis</unit>
                             </stat>
                             <p class="middle">
@@ -128,6 +128,26 @@
                             <a href="https://medianesysteme.com/" target="_blank">
                                 <img src="sponsors/Médiane.png" />
                             </a>
+
+                            <a href="https://www.bureau-vallee.fr/nos-magasins/magasin-saint-maximin-la-sainte-baume-SMX/" target="_blank">
+                                <img src="sponsors/BureauVallée.png" />
+                            </a>
+
+                            <a href="https://www.ism3.fr/" target="_blank">
+                                <img src="sponsors/ImprimerieStMaximinoise.png" />
+                            </a>
+
+                            <a href="https://www.facebook.com/pages/category/Landscape-Company/Entreprise-Basso-201803559848797/" target="_blank">
+                                <img src="sponsors/EntrepriseBasso.png" />
+                            </a>
+
+                            <a href="http://centre.etape-auto.fr/253562-sarl-vicant" target="_blank">
+                                <img src="sponsors/EtapeAuto.jpg" />
+                            </a>
+
+                            <a href="http://www.harley-davidsonmassilia.com/" target="_blank">
+                                <img src="sponsors/HarleyDavidson.png" />
+                            </a>
                         </sponsors>
                         <cols>
                             <p class="middle">
@@ -135,7 +155,7 @@
                             </p>
                             <stat>
                                 <unit>Projet financé à</unit>
-                                <tt>45<span>%</span></tt>
+                                <tt>85<span>%</span></tt>
                             </stat>
                         </cols>
                         <medias>
@@ -210,8 +230,8 @@ function instagram_medias(json, dom) {
     var medias = JSON.parse(json);
 
     for (var media_id in medias.data) {
-        var timestamp = medias.data[media_id].caption.created_time;
-        var description = medias.data[media_id].caption.text;
+        var timestamp = medias.data[media_id].created_time;
+        var description = medias.data[media_id].caption ? medias.data[media_id].caption.text : "";
         var image_url = medias.data[media_id].images.standard_resolution.url;
         var original_url = medias.data[media_id].link;
 
@@ -245,6 +265,8 @@ function instagram_medias(json, dom) {
 
 var sponsors = document.querySelector("sponsors");
 // ajax("php/sponsors.php", display_images, [sponsors, false]);
+
+document.querySelector("#count_sponsors").innerHTML = sponsors.children.length;
 
 /* Timeline */
 
